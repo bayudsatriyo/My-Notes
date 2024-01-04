@@ -2,7 +2,14 @@
 export default {
   content: ["./**/*.{html,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        "h-85": "22rem",
+      },
+      borderRadius: {
+        large: "5rem",
+      },
+    },
   },
   plugins: [],
 };

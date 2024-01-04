@@ -1,3 +1,4 @@
+import { showFormattedDate } from "../utils/dataNotes";
 export interface noteitem {
   id?: number;
   title: string;
@@ -7,11 +8,12 @@ export interface noteitem {
 }
 
 function NoteItems({ title, body, createdAt }: noteitem) {
+  const DateNew = new Date(createdAt);
   return (
-    <div className="noteItem">
-      <h2 className="font-bold text-xl pb-4">{title}</h2>
-      <p className="max-w-sm text-slate-400">{body}</p>
-      <p>{createdAt}</p>
+    <div className="noteItem h-full text-slate-200">
+      <h2 className="font-bold text-xl py-4">{title}</h2>
+      <p className="max-w-sm h-48 overflow-y-auto">{body}</p>
+      <p>{showFormattedDate(DateNew)}</p>
     </div>
   );
 }

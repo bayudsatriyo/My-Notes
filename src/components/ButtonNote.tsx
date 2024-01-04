@@ -1,20 +1,27 @@
 interface handlerButton {
-  onDeleteHandler: () => void;
-  onArchiveHandler: () => void;
+  id: number | undefined;
+  onDeleteHandler: (id: number | undefined) => void;
+  onArchiveHandler: (id: number | undefined) => void;
 }
 
-function ButtonNote({ onDeleteHandler, onArchiveHandler }: handlerButton) {
+interface handlerArchiveButton {
+  id: number | undefined;
+  onDeleteHandler: (id: number | undefined) => void;
+  onBackHandler: (id: number | undefined) => void;
+}
+
+function ButtonNote({ id, onDeleteHandler, onArchiveHandler }: handlerButton) {
   return (
-    <div className="flex flex-row gap-5 justify-center h-16 w-full py-3">
+    <div className="flex flex-row gap-2 justify-center h-16 w-full py-3">
       <button
-        onClick={onDeleteHandler}
-        className="bg-indigo-500 w-1/2 rounded-md"
+        onClick={() => onDeleteHandler(id)}
+        className="bg-slate-100 text-violet-800 border border-violet-500  font-semibold w-1/2 rounded-md hover:bg-violet-800 hover:text-white hover:border-violet-50"
       >
         Delete
       </button>
       <button
-        onClick={onArchiveHandler}
-        className="bg-indigo-500 w-1/2 rounded-md"
+        onClick={() => onArchiveHandler(id)}
+        className="bg-slate-100 text-violet-800 font-semibold border border-violet-500 w-1/2 rounded-md hover:bg-violet-800 hover:text-white hover:border-violet-50"
       >
         Archive
       </button>
@@ -22,4 +29,27 @@ function ButtonNote({ onDeleteHandler, onArchiveHandler }: handlerButton) {
   );
 }
 
-export default ButtonNote;
+function ButtonArchive({
+  id,
+  onDeleteHandler,
+  onBackHandler,
+}: handlerArchiveButton) {
+  return (
+    <div className="flex flex-row gap-5 justify-center h-16 w-full py-3">
+      <button
+        onClick={() => onDeleteHandler(id)}
+        className="bg-slate-100 text-violet-800 font-semibold border border-violet-500 w-1/2 rounded-md hover:bg-violet-800 hover:text-white hover:border-violet-50"
+      >
+        Delete
+      </button>
+      <button
+        onClick={() => onBackHandler(id)}
+        className="bg-slate-100 text-violet-800 font-semibold border border-violet-500 w-1/2 rounded-md hover:bg-violet-800 hover:text-white hover:border-violet-50"
+      >
+        Back
+      </button>
+    </div>
+  );
+}
+
+export { ButtonNote, ButtonArchive };
