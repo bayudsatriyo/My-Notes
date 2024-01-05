@@ -72,7 +72,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
     return (
       <div className="flex justify-center pt-10">
         <form
-          className="flex flex-col w-1/3 gap-3 p-10 border border-violet-300 shadow-lg shadow-violet-700/50 rounded-md"
+          className="flex flex-col w-1/3 min-w-80 gap-3 p-10 border border-violet-300 shadow-lg shadow-violet-700/50 rounded-md"
           onSubmit={this.onSubmitHandler}
         >
           <label htmlFor="title" className="flex flex-col gap-3">

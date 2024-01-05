@@ -70,10 +70,10 @@ class MyNotes extends React.Component<object, Notes> {
     console.log(this.state.search);
     return (
       <div>
-        <h1 className="font-bold text-4xl text-center text-violet-700">
+        <h1 className="font-bold text-4xl text-center text-violet-700 px-2">
           My Notes <span className="text-slate-950">Beta v.0.5</span>
         </h1>
-        <h2 className="font-bold text-4xl text-center">
+        <h2 className="font-bold text-4xl text-center px-2">
           The note-taking app that{" "}
           <span className="text-violet-700">syncs with your life</span>
         </h2>
