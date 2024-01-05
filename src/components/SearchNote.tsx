@@ -41,7 +41,7 @@ class SearchNote extends React.Component<SearchProps, SearchState> {
             <span className="pr-4 text-violet-800">Search</span>
             <input
               type="text"
-              className="rounded-md w-full col-span-4 text-slate-950 border border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+              className="rounded-md px-2 w-full col-span-4 text-slate-950 border border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
               id="searchbar"
               onChange={this.onSearch}
             />

@@ -89,7 +89,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
               type="text"
               id="title"
               className="w-full text-slate-950 border border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500
-              "
+              pl-2"
               placeholder=" isikan Judul"
               value={this.state.title}
               onChange={this.onTitleHandler}
@@ -108,7 +108,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
 
             <textarea
               id="body"
-              className="w-full text-slate-950 border  border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+              className="w-full px-2 text-slate-950 border  border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
               placeholder=" isikan Catatan"
               value={this.state.body}
               onChange={this.onBodyHandler}
