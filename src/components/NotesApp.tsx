@@ -45,11 +45,13 @@ class MyNotes extends React.Component<object, Notes> {
 
   addNoteHandler({ title, body, archived }: NoteCreate) {
     this.setState((prevState) => {
+      const id = prevState.notes[prevState.notes.length - 1].id;
+      console.log(id);
       return {
         notes: [
           ...prevState.notes,
           {
-            id: prevState.notes.length - 1,
+            id: id === undefined ? 1 : id + 1,
             title,
             body,
             createdAt: `${new Date()}`,
