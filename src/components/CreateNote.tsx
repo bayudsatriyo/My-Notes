@@ -4,6 +4,8 @@ export interface NoteCreate {
   title: string;
   body: string;
   archived: boolean;
+  lengthTitle: number;
+  lengthBody: number;
 }
 
 interface addNoteInter {
@@ -18,6 +20,8 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
       title: "",
       body: "",
       archived: false,
+      lengthTitle: 20,
+      lengthBody: 150,
     };
 
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
@@ -38,6 +42,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
     this.setState(() => {
       return {
         title: event.target.value,
+        lengthTitle: 20 - event.target.value.length,
       };
     });
   }
@@ -46,6 +51,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
     this.setState(() => {
       return {
         body: event.target.value,
+        lengthBody: 150 - event.target.value.length,
       };
     });
   }
@@ -57,6 +63,8 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
       title: "",
       body: "",
       archived: false,
+      lengthTitle: 20,
+      lengthBody: 150,
     });
   }
 
@@ -68,18 +76,36 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
           onSubmit={this.onSubmitHandler}
         >
           <label htmlFor="title" className="flex flex-col gap-3">
-            <span>Title</span>
+            <div className="flex flex-row justify-between">
+              <span className="after:content-['*'] after:ml-0.5 after:text-red-500">
+                Title
+              </span>
+              <span className="text-sm text-slate-600">
+                Sisa Karakter {this.state.lengthTitle}
+              </span>
+            </div>
+
             <input
               type="text"
               id="title"
-              className="w-full text-slate-950 border border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
+              className="w-full text-slate-950 border border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500
+              "
               placeholder=" isikan Judul"
               value={this.state.title}
               onChange={this.onTitleHandler}
+              maxLength={20}
             />
           </label>
           <label htmlFor="body" className="flex flex-col gap-3">
-            <span>Isi Catatan</span>
+            <div className="flex flex-row justify-between">
+              <span className="after:content-['*'] after:ml-0.5 after:text-red-500">
+                Isi Catatan
+              </span>
+              <span className="text-sm text-slate-600">
+                Sisa Karakter {this.state.lengthBody}
+              </span>
+            </div>
+
             <textarea
               id="body"
               className="w-full text-slate-950 border  border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
