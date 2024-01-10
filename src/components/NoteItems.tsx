@@ -1,6 +1,6 @@
-import { showFormattedDate } from "../utils/dataNotes";
+import { showFormattedDate } from "../utils";
 export interface noteitem {
-  id?: number;
+  id: number;
   title: string;
   body: string;
   createdAt: string;

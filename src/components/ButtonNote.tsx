@@ -1,12 +1,12 @@
 interface handlerButton {
-  id: number | undefined;
-  onDeleteHandler: (id: number | undefined) => void;
-  onArchiveHandler: (id: number | undefined) => void;
+  id: number;
+  onDeleteHandler: (id: number) => void;
+  onArchiveHandler: (id: number) => void;
 }
 
 interface handlerArchiveButton {
-  id: number | undefined;
-  onDeleteHandler: (id: number | undefined) => void;
+  id: number;
+  onDeleteHandler: (id: number) => void;
   onBackHandler: (id: number | undefined) => void;
 }
 

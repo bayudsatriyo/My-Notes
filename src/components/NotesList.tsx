@@ -1,16 +1,16 @@
 import NoteItems, { noteitem } from "./NoteItems";
-import { ButtonNote, ButtonArchive } from "./ButtonNote";
+import { ButtonNote } from "./ButtonNote";
 
 interface NotesList {
   notes: Array<noteitem>;
-  archive: Array<noteitem>;
-  onDeleteHandler: (id: number | undefined) => void;
-  onArchiveHandler: (id: number | undefined) => void;
+  archive?: Array<noteitem>;
+  onDeleteHandler: (id: number) => void;
+  onArchiveHandler: (id: number) => void;
 }
 
 function NotesList({
   notes,
-  archive,
+  // archive,
   onDeleteHandler,
   onArchiveHandler,
 }: NotesList) {
@@ -36,7 +36,7 @@ function NotesList({
           ))
         )}
       </div>
-      <h2 className="text-3xl font-bold text-center text-slate-50 py-10">
+      {/* <h2 className="text-3xl font-bold text-center text-slate-50 py-10">
         Arsip
       </h2>
       <div className="flex flex-row gap-2 flex-wrap justify-center px-4">
@@ -54,7 +54,7 @@ function NotesList({
             </div>
           ))
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

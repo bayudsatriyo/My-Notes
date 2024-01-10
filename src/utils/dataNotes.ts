@@ -1,23 +1,138 @@
-const getInitialData = () => {
-  return [
+export interface TypeNote {
+  id: number;
+  title: string;
+  body: string;
+}
+
+export interface BodyTitle {
+  title: string;
+  body: string;
+}
+
+let notes = [
+  {
+    id: 1,
+    title: "Babel",
+    body: "Babel merupakan tools open-source yang digunakan untuk mengubah sintaks ECMAScript 2015+ menjadi sintaks yang didukung oleh JavaScript engine versi lama. Babel sering dipakai ketika kita menggunakan sintaks terbaru termasuk sintaks JSX.",
+    createdAt: "2022-04-14T04:27:34.572Z",
+    archived: false,
+  },
+  {
+    id: 2,
+    title: "Functional Component",
+    body: "Functional component merupakan React component yang dibuat menggunakan fungsi JavaScript. Agar fungsi JavaScript dapat disebut component ia harus mengembalikan React element dan dipanggil layaknya React component.",
+    createdAt: "2022-04-14T04:27:34.572Z",
+    archived: false,
+  },
+  {
+    id: 3,
+    title: "Modularization",
+    body: "Dalam konteks pemrograman JavaScript, modularization merupakan teknik dalam memecah atau menggunakan kode dalam berkas JavaScript secara terpisah berdasarkan tanggung jawabnya masing-masing.",
+    createdAt: "2022-04-14T04:27:34.572Z",
+    archived: false,
+  },
+  {
+    id: 4,
+    title: "Lifecycle",
+    body: "Dalam konteks React component, lifecycle merupakan kumpulan method yang menjadi siklus hidup mulai dari component dibuat (constructor), dicetak (render), pasca-cetak (componentDidMount), dan sebagainya. ",
+    createdAt: "2022-04-14T04:27:34.572Z",
+    archived: false,
+  },
+  {
+    id: 5,
+    title: "ESM",
+    body: "ESM (ECMAScript Module) merupakan format modularisasi standar JavaScript.",
+    createdAt: "2022-04-14T04:27:34.572Z",
+    archived: false,
+  },
+  {
+    id: 6,
+    title: "Module Bundler",
+    body: "Dalam konteks pemrograman JavaScript, module bundler merupakan tools yang digunakan untuk menggabungkan seluruh modul JavaScript yang digunakan oleh aplikasi menjadi satu berkas.",
+    createdAt: "2022-04-14T04:27:34.572Z",
+    archived: false,
+  },
+];
+
+function getAllNotes() {
+  return notes;
+}
+
+function getNote(id: number) {
+  const foundedNote = notes.find((note) => note.id === id);
+  return foundedNote;
+}
+
+function getActiveNotes() {
+  const activeNotes = notes.filter((note) => !note.archived);
+  return activeNotes;
+}
+
+function getArchivedNotes() {
+  const archivedNotes = notes.filter((note) => note.archived);
+  return archivedNotes;
+}
+
+function addNote({ title, body }: BodyTitle) {
+  notes = [
+    ...notes,
     {
-      id: 1,
-      title: "My First Note",
-      body: "My Note adalah website yang mampu menyimpan seluruh catatan user, tidak hanya itu My Note juga mampu memilah Note Utama dan Note yang ingin Diarsipkan. Ketika ada Note yang sudah tidak diinginkan, kalian bisa menghapusnya",
-      createdAt: "2024-01-05T04:27:34.572Z",
+      id: notes[notes.length - 1].id + 1,
+      title: title || "(untitled)",
+      body,
+      createdAt: new Date().toISOString(),
       archived: false,
     },
   ];
-};
+}
 
-const showFormattedDate = (date: Date) => {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  return new Date(date).toLocaleDateString("id-ID", options);
-};
+function deleteNote(id: number) {
+  notes = notes.filter((note) => note.id !== id);
+}
 
-export { getInitialData, showFormattedDate };
+function archiveNote(id: number) {
+  notes = notes.map((note) => {
+    if (note.id === id) {
+      return { ...note, archived: true };
+    }
+    return note;
+  });
+}
+
+function unarchiveNote(id: number) {
+  notes = notes.map((note) => {
+    if (note.id === id) {
+      return { ...note, archived: false };
+    }
+
+    return note;
+  });
+}
+
+function editNote({ id, title, body }: TypeNote) {
+  const noteToEdit = notes.find((note) => note.id === id);
+  if (noteToEdit === undefined) {
+    return null;
+  }
+  noteToEdit.title = title;
+  noteToEdit.body = body;
+
+  notes = notes.map((note) => {
+    if (note.id === id) {
+      return note;
+    }
+    return note;
+  });
+}
+
+export {
+  getAllNotes,
+  getActiveNotes,
+  getArchivedNotes,
+  deleteNote,
+  editNote,
+  getNote,
+  archiveNote,
+  unarchiveNote,
+  addNote,
+};

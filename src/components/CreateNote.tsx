@@ -1,4 +1,5 @@
 import React from "react";
+import { BodyTitle } from "../utils/dataNotes";
 
 export interface NoteCreate {
   title: string;
@@ -9,7 +10,7 @@ export interface NoteCreate {
 }
 
 interface addNoteInter {
-  addNote: (NoteCreate: NoteCreate) => void;
+  addNote: (NoteCreate: BodyTitle) => void;
 }
 
 class AddNote extends React.Component<addNoteInter, NoteCreate> {
@@ -58,7 +59,11 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
 
   onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    this.props.addNote(this.state);
+    const titleBody = {
+      title: this.state.title,
+      body: this.state.body,
+    };
+    this.props.addNote(titleBody);
     this.setState({
       title: "",
       body: "",
@@ -90,7 +95,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
               id="title"
               className="w-full text-slate-950 border border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500
               pl-2"
-              placeholder=" isikan Judul"
+              placeholder="isikan Judul"
               value={this.state.title}
               onChange={this.onTitleHandler}
               maxLength={20}
@@ -109,7 +114,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
             <textarea
               id="body"
               className="w-full px-2 text-slate-950 border  border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
-              placeholder=" isikan Catatan"
+              placeholder="isikan Catatan"
               value={this.state.body}
               onChange={this.onBodyHandler}
             />
