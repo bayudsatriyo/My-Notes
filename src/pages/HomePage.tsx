@@ -1,11 +1,11 @@
 import React from "react";
 import { BodyTitle } from "../utils/dataNotes";
 import SearchNote from "../components/SearchNote";
-import NotesList from "../components/NotesList";
+import { NotesList } from "../components/NotesList";
 import AddNote from "../components/CreateNote";
 import { noteitem } from "../components/NoteItems";
 
-interface Keyword {
+export interface Keyword {
   defaultKeyword: string;
   onDelete: (id: number) => void;
   addNoteHandler: ({ title, body }: BodyTitle) => void;
@@ -37,9 +37,7 @@ class HomePage extends React.Component<Keyword, { search: string }> {
         <SearchNote valueSearch={this.searchNote} />
         {this.state.search == "" && (
           <NotesList
-            notes={this.props.defaultNotes.filter(
-              (note) => note.archived === false
-            )}
+            notes={this.props.defaultNotes}
             // archive={this.state.notes.filter(
             //   (archive) => archive.archived === true
             // )}
@@ -51,9 +49,8 @@ class HomePage extends React.Component<Keyword, { search: string }> {
           <NotesList
             notes={this.props.defaultNotes.filter(
               (note) =>
-                note.archived === false &&
-                (note.title.toLowerCase().includes(this.state.search) ||
-                  note.body.toLowerCase().includes(this.state.search))
+                note.title.toLowerCase().includes(this.state.search) ||
+                note.body.toLowerCase().includes(this.state.search)
             )}
             // archive={this.state.notes.filter(
             //   (archive) =>

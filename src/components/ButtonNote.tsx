@@ -7,7 +7,7 @@ interface handlerButton {
 interface handlerArchiveButton {
   id: number;
   onDeleteHandler: (id: number) => void;
-  onBackHandler: (id: number | undefined) => void;
+  onBackHandler: (id: number) => void;
 }
 
 function ButtonNote({ id, onDeleteHandler, onArchiveHandler }: handlerButton) {

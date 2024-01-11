@@ -74,10 +74,11 @@ function getArchivedNotes() {
 }
 
 function addNote({ title, body }: BodyTitle) {
+  console.log(notes.length);
   notes = [
     ...notes,
     {
-      id: notes[notes.length - 1].id + 1,
+      id: notes.length === 0 ? 1 : notes[notes.length - 1].id + 1,
       title: title || "(untitled)",
       body,
       createdAt: new Date().toISOString(),
