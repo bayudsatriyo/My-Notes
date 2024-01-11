@@ -1,4 +1,5 @@
-import NoteItems, { noteitem } from "./NoteItems";
+import { NoteItems } from "./NoteItems";
+import { noteitem } from "./NoteItems";
 import { ButtonArchive, ButtonNote } from "./ButtonNote";
 
 interface NotesList {
@@ -16,7 +17,7 @@ function NotesList({ notes, onDeleteHandler, onArchiveHandler }: NotesList) {
       </h2>
       <div className="flex flex-row gap-2 flex-wrap justify-center px-4">
         {notes.length === 0 ? (
-          <h1 className="text-white pb-5">Notes Kosong</h1>
+          <h1 className="text-white pb-4 mb-32">Notes Kosong</h1>
         ) : (
           notes.map((note) => (
             <div className="card-notes border-2 shadow-lg shadow-violet-500/50 bg-violet-700 border-violet-600 px-2 rounded-xl max-w-96 min-w-80 flex flex-col h-85 mb-5">
@@ -62,7 +63,7 @@ function NoteArchive({ notes, onDeleteHandler, onArchiveHandler }: NotesList) {
       </h2>
       <div className="flex flex-row gap-2 flex-wrap justify-center px-4">
         {notes.length === 0 ? (
-          <h1 className="text-white pb-5">Notes Kosong</h1>
+          <h1 className="text-white pb-4 mb-32">Notes Kosong</h1>
         ) : (
           notes.map((note) => (
             <div className="card-notes border-2 shadow-lg shadow-violet-500/50 bg-violet-700 border-violet-600 px-2 rounded-xl max-w-96 min-w-80 flex flex-col h-85 mb-5">

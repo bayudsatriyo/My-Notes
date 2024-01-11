@@ -14,6 +14,11 @@ function Navigation() {
             Archive
           </Link>
         </li>
+        <li>
+          <Link to="/add" className="font-semibold">
+            Add Note
+          </Link>
+        </li>
       </ul>
     </div>
   );

@@ -2,7 +2,34 @@
 import React from "react";
 import SearchNote from "../components/SearchNote";
 import { NoteArchive } from "../components/NotesList";
-import { Keyword } from "./HomePage";
+import { Keyword, KeywordSearh } from "./HomePage";
+import { useSearchParams } from "react-router-dom";
+
+function ArchiveWrapper({
+  onDelete,
+  addNoteHandler,
+  onArchive,
+  defaultNotes,
+}: KeywordSearh) {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const judul = searchParams.get("judul");
+
+  function onSearchChange(judul: string) {
+    setSearchParams({ judul });
+  }
+
+  return (
+    <ArchivePage
+      defaultKeyword={judul!}
+      keywordChange={onSearchChange}
+      onDelete={onDelete}
+      addNoteHandler={addNoteHandler}
+      onArchive={onArchive}
+      defaultNotes={defaultNotes}
+    />
+  );
+}
 
 class ArchivePage extends React.Component<Keyword, { search: string }> {
   constructor(props: Keyword) {
@@ -19,6 +46,8 @@ class ArchivePage extends React.Component<Keyword, { search: string }> {
     this.setState(() => {
       return { search: search };
     });
+
+    this.props.keywordChange(search as string);
   }
 
   render() {
@@ -57,4 +86,4 @@ class ArchivePage extends React.Component<Keyword, { search: string }> {
   }
 }
 
-export default ArchivePage;
+export default ArchiveWrapper;

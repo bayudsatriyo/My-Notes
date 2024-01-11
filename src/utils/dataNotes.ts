@@ -7,6 +7,7 @@ export interface TypeNote {
 export interface BodyTitle {
   title: string;
   body: string;
+  archived: boolean;
 }
 
 let notes = [
@@ -43,14 +44,14 @@ let notes = [
     title: "ESM",
     body: "ESM (ECMAScript Module) merupakan format modularisasi standar JavaScript.",
     createdAt: "2022-04-14T04:27:34.572Z",
-    archived: false,
+    archived: true,
   },
   {
     id: 6,
     title: "Module Bundler",
     body: "Dalam konteks pemrograman JavaScript, module bundler merupakan tools yang digunakan untuk menggabungkan seluruh modul JavaScript yang digunakan oleh aplikasi menjadi satu berkas.",
     createdAt: "2022-04-14T04:27:34.572Z",
-    archived: false,
+    archived: true,
   },
 ];
 
@@ -73,8 +74,8 @@ function getArchivedNotes() {
   return archivedNotes;
 }
 
-function addNote({ title, body }: BodyTitle) {
-  console.log(notes.length);
+function addNote({ title, body, archived }: BodyTitle) {
+  console.log({ title, body, archived });
   notes = [
     ...notes,
     {
@@ -82,7 +83,7 @@ function addNote({ title, body }: BodyTitle) {
       title: title || "(untitled)",
       body,
       createdAt: new Date().toISOString(),
-      archived: false,
+      archived: archived,
     },
   ];
 }

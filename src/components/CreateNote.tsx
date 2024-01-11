@@ -1,5 +1,6 @@
 import React from "react";
 import { BodyTitle } from "../utils/dataNotes";
+// import ReactHtmlParser from "html-react-parser";
 
 export interface NoteCreate {
   title: string;
@@ -9,7 +10,7 @@ export interface NoteCreate {
   lengthBody: number;
 }
 
-interface addNoteInter {
+export interface addNoteInter {
   addNote: (NoteCreate: BodyTitle) => void;
 }
 
@@ -48,20 +49,22 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
     });
   }
 
-  onBodyHandler(event: React.ChangeEvent<HTMLTextAreaElement>) {
+  onBodyHandler(event: React.FormEvent<HTMLDivElement>) {
+    const value = event.currentTarget.innerHTML;
     this.setState(() => {
       return {
-        body: event.target.value,
-        lengthBody: 150 - event.target.value.length,
+        body: value,
+        lengthBody: 150 - value.length,
       };
     });
   }
 
   onSubmitHandler(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const titleBody = {
+    const titleBody: BodyTitle = {
       title: this.state.title,
       body: this.state.body,
+      archived: this.state.archived,
     };
     this.props.addNote(titleBody);
     this.setState({
@@ -71,11 +74,13 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
       lengthTitle: 20,
       lengthBody: 150,
     });
+    const body = document.getElementById("body")!;
+    body.innerHTML = "";
   }
 
   render() {
     return (
-      <div className="flex justify-center pt-10">
+      <div className="flex justify-center pt-10 mb-20">
         <form
           className="flex flex-col w-1/3 min-w-80 gap-3 p-10 border border-violet-300 shadow-lg shadow-violet-700/50 rounded-md"
           onSubmit={this.onSubmitHandler}
@@ -93,7 +98,7 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
             <input
               type="text"
               id="title"
-              className="w-full text-slate-950 border border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500
+              className="w-full text-slate-950 border placeholder:text-slate-400 border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500
               pl-2"
               placeholder="isikan Judul"
               value={this.state.title}
@@ -101,24 +106,22 @@ class AddNote extends React.Component<addNoteInter, NoteCreate> {
               maxLength={20}
             />
           </label>
-          <label htmlFor="body" className="flex flex-col gap-3">
-            <div className="flex flex-row justify-between">
-              <span className="after:content-['*'] after:ml-0.5 after:text-red-500">
-                Isi Catatan
-              </span>
-              <span className="text-sm text-slate-600">
-                Sisa Karakter {this.state.lengthBody}
-              </span>
-            </div>
+          <div className="flex flex-row justify-between">
+            <span className="after:content-['*'] after:ml-0.5 after:text-red-500">
+              Isi Catatan
+            </span>
+            <span className="text-sm text-slate-600">
+              Sisa Karakter {this.state.lengthBody}
+            </span>
+          </div>
 
-            <textarea
-              id="body"
-              className="w-full px-2 text-slate-950 border  border-violet-300 focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500"
-              placeholder="isikan Catatan"
-              value={this.state.body}
-              onChange={this.onBodyHandler}
-            />
-          </label>
+          <div
+            id="body"
+            className="w-full px-2 text-slate-950"
+            data-placeholder="Sebenarnya saya adalah ...."
+            contentEditable
+            onInput={this.onBodyHandler}
+          />
           <label htmlFor="archived" className="">
             <input
               type="checkbox"
