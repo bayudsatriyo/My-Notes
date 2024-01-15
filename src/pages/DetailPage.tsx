@@ -3,38 +3,19 @@ import { NoteDetail, noteitem } from "../components/NoteItems";
 import { getNote } from "../utils/dataNotes";
 import { useParams } from "react-router-dom";
 
-interface DetailPageState {
-  note: noteitem;
-}
-
-function DetailWrapper() {
+function DetailPage() {
   const { id } = useParams();
+  const [note, setNote] = React.useState<noteitem>();
 
-  return <DetailPage id={Number(id)} />;
+  React.useEffect(() => {
+    setNote(getNote(Number(id)));
+  }, [id]);
+
+  return (
+    <section className="bg-violet-700 h-full pb-36">
+      {note !== undefined ? <NoteDetail {...note} /> : <p>Kosong</p>}
+    </section>
+  );
 }
 
-class DetailPage extends React.Component<{ id: number }, DetailPageState> {
-  constructor(props: { id: number }) {
-    super(props);
-
-    this.state = {
-      note: getNote(props.id)!,
-    };
-  }
-
-  render() {
-    const noteItem = this.state.note;
-    console.log(noteItem);
-    return (
-      <section className="bg-violet-700 h-full pb-36">
-        {this.state.note !== null ? (
-          <NoteDetail {...noteItem} />
-        ) : (
-          <p>Kosong</p>
-        )}
-      </section>
-    );
-  }
-}
-
-export default DetailWrapper;
+export default DetailPage;

@@ -1,13 +1,9 @@
+import { BodyTitle } from "../components/AddNote";
+
 export interface TypeNote {
   id: number;
   title: string;
   body: string;
-}
-
-export interface BodyTitle {
-  title: string;
-  body: string;
-  archived: boolean;
 }
 
 let notes = [
@@ -74,8 +70,8 @@ function getArchivedNotes() {
   return archivedNotes;
 }
 
-function addNote({ title, body, archived }: BodyTitle) {
-  console.log({ title, body, archived });
+function addNote({ title, body }: BodyTitle) {
+  console.log({ title, body });
   notes = [
     ...notes,
     {
@@ -83,7 +79,7 @@ function addNote({ title, body, archived }: BodyTitle) {
       title: title || "(untitled)",
       body,
       createdAt: new Date().toISOString(),
-      archived: archived,
+      archived: false,
     },
   ];
 }
