@@ -2,13 +2,18 @@ import { Link } from "react-router-dom";
 import Login from "../components/Login";
 import { login } from "../utils/api";
 
+interface outputLogin {
+  error: boolean;
+  data: { accessToken: string };
+}
+
 function LoginPage({
   loginSuccess,
 }: {
-  loginSuccess: (accessToken: string) => void;
+  loginSuccess: ({ accessToken }: { accessToken: string }) => void;
 }) {
   async function onLogin(email: string, password: string) {
-    const { error, data } = await login({ email, password });
+    const { error, data }: outputLogin = await login({ email, password });
 
     if (!error) {
       loginSuccess(data);
