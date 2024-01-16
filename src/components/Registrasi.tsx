@@ -45,27 +45,54 @@ function Register({ register }: propsAuth) {
   }
 
   return (
-    <form onSubmit={SubmitHandler} className="register-input">
-      <input
-        type="text"
-        placeholder="Nama"
-        value={name}
-        onChange={onNameChange}
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={onEmailChange}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        autoComplete="current-password"
-        value={password}
-        onChange={onPasswordChange}
-      />
-      <button>Register</button>
+    <form
+      onSubmit={SubmitHandler}
+      className="register-input flex flex-col w-2/3 mx-auto gap-4 text-start py-10"
+    >
+      {" "}
+      <label htmlFor="name">
+        <span className="font-semibold after:content-['*'] after:ml-0.5 after:text-red-500 block py-2">
+          Nama
+        </span>
+        <input
+          id="name"
+          type="text"
+          placeholder="Nama"
+          value={name}
+          onChange={onNameChange}
+          className="w-full focus:ring-violet-700 ring ring-violet-500  border focus:border-violet-600 rounded-sm pl-1"
+        />
+      </label>
+      <label htmlFor="email">
+        <span className="font-semibold after:content-['*'] after:ml-0.5 after:text-red-500 block py-2">
+          Email
+        </span>
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={onEmailChange}
+          className="w-full focus:ring-violet-700 ring ring-violet-500  border focus:border-violet-600 rounded-sm pl-1"
+        />
+      </label>
+      <label htmlFor="password">
+        <span className="font-semibold after:content-['*'] after:ml-0.5 after:text-red-500 block py-2">
+          Password
+        </span>
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          autoComplete="current-password"
+          value={password}
+          onChange={onPasswordChange}
+          className="w-full focus:ring-violet-700 ring ring-violet-500  border focus:border-violet-600 rounded-sm pl-1"
+        />
+      </label>
+      <button className="mt-4 rounded-2xl bg-gradient-to-r from-purple-900 to-violet-600 w-fit py-2 px-10 font-semibold text-slate-50 hover:from-slate-50 hover:to-slate-50 hover:text-violet-700 border hover:border-violet-700 mx-auto">
+        Register
+      </button>
     </form>
   );
 }

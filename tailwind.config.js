@@ -9,6 +9,9 @@ export default {
       borderRadius: {
         large: "5rem",
       },
+      fontFamily: {
+        myfont: ['"Roboto"'],
+      },
     },
   },
   plugins: [],

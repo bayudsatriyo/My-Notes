@@ -30,21 +30,42 @@ function Login({ login }: LoginProps) {
   }
 
   return (
-    <form onSubmit={onSubmitLogin} className="login-input">
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={onChangeEmail}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        minLength={6}
-        onChange={onChangePassword}
-      />
-      <button>Masuk</button>
+    <form
+      onSubmit={onSubmitLogin}
+      className="login-input flex flex-col w-1/2 mx-auto gap-4 text-start"
+    >
+      <label htmlFor="email">
+        <span className="font-semibold after:content-['*'] after:ml-0.5 after:text-red-500">
+          Email
+        </span>
+        <br />
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={onChangeEmail}
+          className="w-full h-8 pl-1 my-2 ring-violet-500 ring"
+        />
+      </label>
+      <label htmlFor="passowrd">
+        <span className="after:content-['*'] after:ml-0.5 after:text-red-500 font-semibold">
+          Password
+        </span>
+        <br />
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          value={password}
+          minLength={6}
+          onChange={onChangePassword}
+          className="w-full h-8 pl-1 my-2 ring-violet-500 ring "
+        />
+      </label>
+      <button className="rounded-2xl bg-gradient-to-r from-purple-900 to-violet-600 w-fit py-1 px-7 mb-4 text-slate-50 hover:text-violet-700 hover:from-slate-50 hover:to-slate-50 hover:border-violet-700 border font-semibold mx-auto">
+        Masuk
+      </button>
     </form>
   );
 }

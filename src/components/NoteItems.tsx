@@ -7,6 +7,7 @@ export interface noteitem {
   body: string;
   createdAt: string;
   archived: boolean;
+  owner?: string;
 }
 
 function NoteItems({ id, title, body, createdAt }: noteitem) {
