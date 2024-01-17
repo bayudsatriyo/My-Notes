@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import SearchNote from "../components/SearchNote";
 import { NoteArchive } from "../components/NotesList";
 import { KeywordSearh } from "./HomePageApp";
@@ -17,6 +17,12 @@ function ArchivePage({ defaultNotes, onDelete, onArchive }: KeywordSearh) {
   console.log(keyword);
   return (
     <div>
+      <Link
+        to={"/add"}
+        className="fixed bottom-8 right-16 hover:bg-violet-700 text-center text-2xl hover:text-slate-50 font-semibold w-14 rounded-full py-2.5 bg-white border-violet-400 border-2 text-violet-700"
+      >
+        +
+      </Link>
       <SearchNote valueSearch={searchNote} />
       {(keyword == "" || keyword === null) && (
         <NoteArchive

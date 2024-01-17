@@ -47,12 +47,12 @@ function Register({ register }: propsAuth) {
   return (
     <form
       onSubmit={SubmitHandler}
-      className="register-input flex flex-col w-2/3 mx-auto gap-4 text-start py-10"
+      className="register-input flex flex-col w-2/3 mx-auto gap-2 text-start py-5"
     >
       {" "}
       <label htmlFor="name">
         <span className="font-semibold after:content-['*'] after:ml-0.5 after:text-red-500 block py-2">
-          Nama
+          Name
         </span>
         <input
           id="name"
@@ -60,7 +60,7 @@ function Register({ register }: propsAuth) {
           placeholder="Nama"
           value={name}
           onChange={onNameChange}
-          className="w-full focus:ring-violet-700 ring ring-violet-500  border focus:border-violet-600 rounded-sm pl-1"
+          className="w-full focus:ring-violet-700 focus:ring border-violet-500 border-2 rounded-md pl-1"
         />
       </label>
       <label htmlFor="email">
@@ -73,7 +73,7 @@ function Register({ register }: propsAuth) {
           placeholder="Email"
           value={email}
           onChange={onEmailChange}
-          className="w-full focus:ring-violet-700 ring ring-violet-500  border focus:border-violet-600 rounded-sm pl-1"
+          className="w-full focus:ring-violet-700 focus:ring border-violet-500 border-2 rounded-md pl-1"
         />
       </label>
       <label htmlFor="password">
@@ -87,7 +87,7 @@ function Register({ register }: propsAuth) {
           autoComplete="current-password"
           value={password}
           onChange={onPasswordChange}
-          className="w-full focus:ring-violet-700 ring ring-violet-500  border focus:border-violet-600 rounded-sm pl-1"
+          className="w-full focus:ring-violet-700 focus:ring border-violet-500 border-2 rounded-md pl-1"
         />
       </label>
       <button className="mt-4 rounded-2xl bg-gradient-to-r from-purple-900 to-violet-600 w-fit py-2 px-10 font-semibold text-slate-50 hover:from-slate-50 hover:to-slate-50 hover:text-violet-700 border hover:border-violet-700 mx-auto">

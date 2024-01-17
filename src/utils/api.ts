@@ -112,6 +112,18 @@ async function getActiveNotes() {
   return { error: false, data: responseJson.data };
 }
 
+async function getNoteById(id: string) {
+  const response = await fetchWithToken(`${BASE_URL}/notes/${id}`);
+  const responseJson = await response.json();
+
+  if (responseJson.status !== "success") {
+    alert(responseJson.message);
+    return { error: true, data: [] };
+  }
+
+  return { error: false, data: responseJson.data };
+}
+
 async function getArchivesNotes() {
   const response = await fetchWithToken(`${BASE_URL}/notes/archived`);
   const responseJson = await response.json();
@@ -187,4 +199,5 @@ export {
   deleteNote,
   ArchiveNote,
   UnarchiveNote,
+  getNoteById,
 };

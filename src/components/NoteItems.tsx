@@ -11,8 +11,7 @@ export interface noteitem {
 }
 
 function NoteItems({ id, title, body, createdAt }: noteitem) {
-  console.log(createdAt);
-  console.log(typeof createdAt);
+  console.log(id);
   const DateNew = new Date(createdAt);
   return (
     <div className="noteItem h-full text-slate-200">
@@ -26,20 +25,4 @@ function NoteItems({ id, title, body, createdAt }: noteitem) {
   );
 }
 
-function NoteDetail({ id, title, body, createdAt }: noteitem) {
-  console.log(createdAt);
-  console.log(typeof createdAt);
-  const DateNew = new Date(createdAt);
-  return (
-    <div className="noteItem w-1/2 h-full text-slate-200 mt-10 mx-auto flex flex-col justify-center">
-      <a href={`/note/${id}`} onClick={event?.preventDefault}>
-        <h2 className="font-bold text-xl py-4">{title}</h2>
-      </a>
-
-      <p className=" h-48 overflow-y-auto">{body}</p>
-      <p>{showFormattedDate(DateNew)}</p>
-    </div>
-  );
-}
-
-export { NoteItems, NoteDetail };
+export { NoteItems };

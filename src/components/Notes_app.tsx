@@ -18,6 +18,7 @@ import {
 } from "../utils/api";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import { LocaleProvider } from "../context/context";
 
 function Notes_app() {
   const [notes, setNotes] = React.useState<Array<noteitem>>([]);
@@ -27,6 +28,11 @@ function Notes_app() {
     email: string;
   } | null>(null);
   const [initializing, setInitializing] = React.useState(true);
+  const [locale, setLocale] = React.useState("id");
+
+  const toggleLocale = () => {
+    setLocale((prevLocale) => (prevLocale === "id" ? "en" : "id"));
+  };
 
   React.useEffect(() => {
     async function getUserLog() {
@@ -121,51 +127,69 @@ function Notes_app() {
     );
   }
 
+  const value = {
+    locale,
+    toggleLocale,
+  };
+
   return (
-    <>
-      <header>
-        <Navigation logout={onLogout} name={auth.name} />
-      </header>
-      <main>
-        <h1 className="font-bold text-4xl text-center text-violet-700 px-2 mt-20">
-          My Notes <span className="text-slate-950">Beta v.0.5</span>
-        </h1>
-        <h2 className="font-bold text-4xl text-center px-2">
-          The note-taking app that{" "}
-          <span className="text-violet-700">syncs with your life</span>
-        </h2>
-        <Routes>
-          <Route
-            path="/*"
-            element={
-              <HomePage
-                onDelete={onDeleteActiveNote}
-                defaultNotes={notes}
-                onArchive={onArchive}
-              />
-            }
-          ></Route>
-          <Route
-            path="/archive"
-            element={
-              <ArchivePage
-                onDelete={onDeleteArchiveNote}
-                defaultNotes={archive}
-                onArchive={onUnarchive}
-              />
-            }
-          ></Route>
-          <Route path="/note/:id" element={<DetailPage />}></Route>
-          <Route
-            path="/add"
-            element={<AddNote addNote={addNoteHandler} />}
-          ></Route>
-        </Routes>
-      </main>
-      <footer className="bg-violet-400 text-center bottom-0">
-        <p>© 2024 MyNote-App || 🐱‍👤 Bayu Dwi Satriyo</p>
-      </footer>
-    </>
+    <LocaleProvider value={value}>
+      <section className="h-screen">
+        <section className="flex gap-10 flex-col md:flex-row">
+          <header className="w-full md:w-1/5">
+            <Navigation logout={onLogout} name={auth.name} />
+          </header>
+          <main className="w-full">
+            <h1 className="font-bold text-4xl text-center text-violet-700 px-2 mt-20">
+              {locale === "id" ? "Catatanku" : "My Notes"}{" "}
+              <span className="text-slate-950">Beta v.0.5</span>
+            </h1>
+            <h2 className="font-bold text-4xl text-center px-2">
+              {locale === "id"
+                ? "Aplikasi pencatatan yang"
+                : "The note-taking app that"}
+              <span className="text-violet-700">
+                {locale === "id"
+                  ? " sinkron dengan hidup Anda"
+                  : " syncs with your life"}
+              </span>
+            </h2>
+            <Routes>
+              <Route path="/note/:id" element={<DetailPage />}></Route>
+              <Route
+                path="/*"
+                element={
+                  <HomePage
+                    onDelete={onDeleteActiveNote}
+                    defaultNotes={notes}
+                    onArchive={onArchive}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/archive"
+                element={
+                  <ArchivePage
+                    onDelete={onDeleteArchiveNote}
+                    defaultNotes={archive}
+                    onArchive={onUnarchive}
+                  />
+                }
+              ></Route>
+              <Route
+                path="/add"
+                element={<AddNote addNote={addNoteHandler} />}
+              ></Route>
+            </Routes>
+          </main>
+        </section>
+        <section className="relative">
+          <footer className="bg-violet-400 text-center bottom-0 ">
+            <p>© 2024 MyNote-App || 🐱‍👤 Bayu Dwi Satriyo</p>
+          </footer>
+        </section>
+      </section>
+    </LocaleProvider>
   );
 }
 

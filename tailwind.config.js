@@ -11,6 +11,10 @@ export default {
       },
       fontFamily: {
         myfont: ['"Roboto"'],
+        logos: ['"Pacifico"'],
+      },
+      fontSize: {
+        logos: "15rem",
       },
     },
   },

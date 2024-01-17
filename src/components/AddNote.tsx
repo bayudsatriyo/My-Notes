@@ -43,16 +43,13 @@ function AddNote({ addNote }: addNoteInter) {
   }
 
   return (
-    <div className="flex justify-center pt-10 mb-28">
+    <div className=" pt-10">
       <form
-        className="flex flex-col w-1/3 min-w-80 gap-3 p-10 border border-violet-300 shadow-lg shadow-violet-700/50 rounded-md"
+        className="flex flex-col w-full min-w-80 gap-3 p-10 "
         onSubmit={onSubmitHandler}
       >
         <label htmlFor="title" className="flex flex-col gap-3">
-          <div className="flex flex-row justify-between">
-            <span className="after:content-['*'] after:ml-0.5 after:text-red-500">
-              Title
-            </span>
+          <div className="flex flex-row justify-end">
             <span className="text-sm text-slate-600">
               Sisa Karakter {20 - title.length}
             </span>
@@ -60,16 +57,13 @@ function AddNote({ addNote }: addNoteInter) {
 
           <div
             id="title"
-            className="w-full px-2 text-slate-950"
+            className="w-full px-2 text-slate-950 md:text-2xl"
             data-placeholder="isikan Judul"
             contentEditable
             onInput={onTitleHandler}
           />
         </label>
-        <div className="flex flex-row justify-between">
-          <span className="after:content-['*'] after:ml-0.5 after:text-red-500">
-            Isi Catatan
-          </span>
+        <div className="flex flex-row justify-end">
           <span className="text-sm text-slate-600">
             Sisa Karakter {150 - body.length}
           </span>
@@ -77,19 +71,21 @@ function AddNote({ addNote }: addNoteInter) {
 
         <div
           id="body"
-          className="w-full px-2 text-slate-950"
+          className="w-full h-40 px-2 text-slate-950 md:text-xl"
           data-placeholder="Sebenarnya saya adalah ...."
           contentEditable
           onInput={onBodyHandler}
         />
 
         <br />
-        <button
-          type="submit"
-          className="bg-violet-700 text-slate-50 font-semibold w-36 min-w-20 mx-auto block rounded-xl py-2 border hover:bg-white hover:border-violet-700 hover:text-violet-700"
-        >
-          Submit
-        </button>
+        <div className=" block w-full text-end">
+          <button
+            type="submit"
+            className="bg-violet-700 text-slate-50 font-semibold w-14 text-2xl rounded-full py-2.5 border hover:bg-white hover:border-violet-700 hover:text-violet-700"
+          >
+            +
+          </button>
+        </div>
       </form>
     </div>
   );

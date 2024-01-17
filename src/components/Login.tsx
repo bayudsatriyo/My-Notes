@@ -32,7 +32,7 @@ function Login({ login }: LoginProps) {
   return (
     <form
       onSubmit={onSubmitLogin}
-      className="login-input flex flex-col w-1/2 mx-auto gap-4 text-start"
+      className="login-input flex flex-col w-4/6 mx-auto gap-4 text-start"
     >
       <label htmlFor="email">
         <span className="font-semibold after:content-['*'] after:ml-0.5 after:text-red-500">
@@ -45,7 +45,7 @@ function Login({ login }: LoginProps) {
           placeholder="Email"
           value={email}
           onChange={onChangeEmail}
-          className="w-full h-8 pl-1 my-2 ring-violet-500 ring"
+          className="w-full focus:ring-violet-700 focus:ring border-violet-500 border-2 rounded-md pl-1"
         />
       </label>
       <label htmlFor="passowrd">
@@ -60,11 +60,11 @@ function Login({ login }: LoginProps) {
           value={password}
           minLength={6}
           onChange={onChangePassword}
-          className="w-full h-8 pl-1 my-2 ring-violet-500 ring "
+          className="w-full focus:ring-violet-700 focus:ring border-violet-500 border-2 rounded-md pl-1"
         />
       </label>
       <button className="rounded-2xl bg-gradient-to-r from-purple-900 to-violet-600 w-fit py-1 px-7 mb-4 text-slate-50 hover:text-violet-700 hover:from-slate-50 hover:to-slate-50 hover:border-violet-700 border font-semibold mx-auto">
-        Masuk
+        Login
       </button>
     </form>
   );
