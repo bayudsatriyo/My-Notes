@@ -40,8 +40,8 @@ function LoginPage({
           </p>
         </div>
       </div>
-      <div className="logos w-1/3 hidden md:flex flex-col fade-in-right ml-10">
-        <h1 className="font-logos text-logos text-slate-50 text-center ">N</h1>
+      <div className="logos w-1/3 hidden md:flex flex-col fade-in-right ml-10 xl:mt-32">
+        <h1 className="font-logos text-logos text-slate-50 text-center">N</h1>
         <p className="font-logos text-3xl text-slate-50 text-center ">
           The note-taking app that <br /> syncs with your life
         </p>

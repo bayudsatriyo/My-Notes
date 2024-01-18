@@ -58,7 +58,7 @@ function AddNote({ addNote }: addNoteInter) {
           <div
             id="title"
             className="w-full px-2 text-slate-950 md:text-2xl"
-            data-placeholder="isikan Judul"
+            data-placeholder="Masukan judul catatan disini"
             contentEditable
             onInput={onTitleHandler}
           />
@@ -71,8 +71,8 @@ function AddNote({ addNote }: addNoteInter) {
 
         <div
           id="body"
-          className="w-full h-40 px-2 text-slate-950 md:text-xl"
-          data-placeholder="Sebenarnya saya adalah ...."
+          className="w-full min-h-40 h-80 px-2 text-slate-950 md:text-xl"
+          data-placeholder="Masukan isi catatan disini ..."
           contentEditable
           onInput={onBodyHandler}
         />

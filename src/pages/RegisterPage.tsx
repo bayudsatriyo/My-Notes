@@ -12,8 +12,8 @@ function RegisterPage() {
   }
 
   return (
-    <section className="register-page bg-gradient-to-t from-purple-900 to-violet-600 w-full h-screen justify-end flex md:pr-14">
-      <div className="logos w-1/3 hidden md:flex flex-col fade-in-left mr-32">
+    <section className="register-page bg-gradient-to-t from-purple-900 to-violet-600 w-full h-screen justify-end flex md:pr-14 ">
+      <div className="logos w-1/3 hidden md:flex flex-col fade-in-left mr-32 xl:mt-32">
         <h1 className="font-logos text-logos text-slate-50 text-center ">N</h1>
         <p className="font-logos text-3xl text-slate-50 text-center ">
           The note-taking app that <br /> syncs with your life
